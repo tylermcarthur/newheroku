@@ -6,9 +6,9 @@ const db = require('./db/db_configuration.js');
 
 app.use(express.static('public'))
 
-app.get('/api/students', (req, res) => {
+app.get('/api/students', async(req, res) => {
     const client = await pool.connect
-    client.query("SELECT * FROM student;", (err, data) => {
+    client.query("SELECT * FROM student", (err, data) => {
         res.json(data.rows);
         client.release();
     })
