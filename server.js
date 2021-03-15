@@ -8,7 +8,7 @@ app.use(express.static('public'))
 
 app.get('/api/students', async(req, res) => {
     const client = await pool.connect
-    client.query("SELECT * FROM student", (err, data) => {
+    pool.query("SELECT * FROM student", (err, data) => {
         res.json(data.rows);
         client.release();
     })
